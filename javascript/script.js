@@ -1,8 +1,8 @@
+import {todo} from '../javascript/todo.js';
+
 //finding elements
-const container = document.querySelector(".container");
 const todoForm = document.querySelector(".todoForm");
 const todoInput = document.querySelector("#inputTodo");
-const todoAddButton = document.querySelector("#addTodoButton");
 const todoLists = document.querySelector("#lists");
 const message = document.querySelector("#message");
 
@@ -17,13 +17,13 @@ const showMessage = (text,status) =>{
 }
 
 //create todo
-const createTodo = (todoId,todoValue) =>{
+const createTodo = (todo) =>{
     const todoElement = document.createElement("li");
     todoElement.classList.add("liStyle")
-    todoElement.id = todoId;
+    todoElement.id = todo.todoId;
     
     todoElement.innerHTML = `
-        <span> ${todoValue} </span>
+        <span> ${todo.todoValue} </span>
         <span > <button class="btn"  id="deleteButton"> <i class="fa-solid fa-trash"></i> </button> </span>
     `;
     todoLists.appendChild(todoElement);
@@ -53,12 +53,14 @@ const addTodo = (event) =>{
     
     //unique id
     const todoId = Date.now().toString();
-    createTodo(todoId,todoValue);
+
+    const newTodo = new todo(todoId,todoValue);
+    createTodo(newTodo);
     showMessage("todo is added","success");
 
     //adding todo to local storage
     const todos = getTodosFromLocalStorage();
-    todos.push({todoId,todoValue});
+    todos.push(newTodo);
     localStorage.setItem("mytodos",JSON.stringify(todos));
 
     todoInput.value = "";
@@ -67,7 +69,7 @@ const addTodo = (event) =>{
 //load todo
 const loadTodo = () =>{
     const todos = getTodosFromLocalStorage();
-    todos.map((todo) => createTodo(todo.todoId,todo.todoValue));
+    todos.map((todo) => createTodo(todo));
 }
 
 //adding listeners
