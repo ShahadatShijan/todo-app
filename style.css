@@ -46,11 +46,42 @@ input{
     color: white;
     transition: all 0.3s;
     cursor: pointer;
-    width: 19%;
 }
 .btn:hover{
     background-color: white;
     color: black;
+}
+#addTodoButton{
+    width: 19%;
+}
+
+.liStyle{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    color: white;
+    padding: 0.5rem;
+    border-radius: 0.6rem;
+    margin: 1rem 0;  
+}
+.liStyle:hover{
+    background-color: #111;
+}
+
+.bg-success{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    color: black;
+    background-color: #ddffdd;
+    border-left: 6px solid #04aa6d;
+}
+.bg-danger{
+    margin: 0.5rem 0;
+    padding: 0.5rem;
+    color: black;
+    background-color: #ffdddd;
+    border-left: 6px solid #f44336;
 }
 
 
